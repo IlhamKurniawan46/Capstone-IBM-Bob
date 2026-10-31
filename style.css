@@ -10,6 +10,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ---- Header ---- */
+.app-header {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #059669 100%);
+  box-shadow: 0 4px 16px 0 rgb(13 148 136 / .30);
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle shimmer stripe on the header */
+.app-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / .06) 55%, transparent 70%);
+  pointer-events: none;
+}
+.header-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / .20));
+}
+
 /* ---- Utility: Card ---- */
 .card {
   background: #ffffff;
@@ -25,25 +47,48 @@ body {
 .kpi-card {
   background: #ffffff;
   border-radius: 1rem;
-  padding: 1.25rem;
+  padding: 1.1rem 1.1rem 1.25rem;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / .07);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   border-top: 3px solid #0d9488;
+  animation: fadeInUp 0.35s ease both;
 }
+.kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.kpi-card:nth-child(2) { animation-delay: 0.10s; }
+.kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.kpi-card:nth-child(4) { animation-delay: 0.20s; }
 .kpi-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px 0 rgb(0 0 0 / .10);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / .11);
 }
+
+/* KPI icon pill */
+.kpi-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.6rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.65rem;
+  line-height: 1;
+}
+.kpi-icon-teal   { background: #ccfbf1; }
+.kpi-icon-emerald{ background: #d1fae5; }
+.kpi-icon-amber  { background: #fef3c7; }
+.kpi-icon-indigo { background: #e0e7ff; }
+
 .kpi-label {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 500;
   color: #64748b; /* slate-500 */
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
 }
 .kpi-value {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.2;
   word-break: break-word;
@@ -140,6 +185,25 @@ body {
   border-bottom: 1px solid #e2e8f0;
   padding-bottom: 0.6rem;
   margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Chart card fade-in animation */
+.chart-card {
+  opacity: 0;
+  animation: fadeInChart 0.45s ease forwards;
+}
+/* Stagger each of the four chart cards */
+.chart-card:nth-child(1) { animation-delay: 0.10s; }
+.chart-card:nth-child(2) { animation-delay: 0.20s; }
+.chart-card:nth-child(3) { animation-delay: 0.30s; }
+.chart-card:nth-child(4) { animation-delay: 0.40s; }
+
+@keyframes fadeInChart {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ---- Top-5 table ---- */
@@ -230,6 +294,51 @@ body {
 
 /* ---- Responsive tweaks ---- */
 @media (max-width: 480px) {
-  .kpi-value { font-size: 1.05rem; }
+  .kpi-value  { font-size: 1.0rem; }
   .chart-wrap { height: 230px; }
+}
+
+/* ---- 375 px comfort (iPhone SE / small Android) ---- */
+@media (max-width: 390px) {
+  /* Tighter main padding */
+  main { padding-left: 0.75rem; padding-right: 0.75rem; }
+
+  /* Header: keep icon + title on one line */
+  .app-header .max-w-7xl { padding-left: 0.875rem; padding-right: 0.875rem; }
+  .header-icon { font-size: 1.6rem; }
+  h1.text-xl   { font-size: 1rem; }
+
+  /* KPI grid: single column so values don't overflow */
+  #kpi-section .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+  .kpi-card           { padding: 0.85rem 0.9rem 1rem; }
+  .kpi-icon-wrap      { width: 1.9rem; height: 1.9rem; font-size: 0.95rem; margin-bottom: 0.45rem; }
+  .kpi-label          { font-size: 0.65rem; }
+  .kpi-value          { font-size: 0.92rem; }
+
+  /* Cards: reduce border radius & padding slightly */
+  .card { border-radius: 0.75rem; }
+  .card.p-5 { padding: 1rem; }
+
+  /* Filter grid already stacks (grid-cols-1), just shrink gap */
+  #filter-section .grid { gap: 0.6rem; }
+
+  /* Chart height smaller to avoid heavy scroll */
+  .chart-wrap { height: 210px; }
+
+  /* Budget input row: stack vertically */
+  #budget-section .flex { flex-direction: column; align-items: stretch; }
+  #budget-section .flex .btn { width: 100%; justify-content: center; }
+
+  /* Budget labels: allow wrapping */
+  #budget-result .flex { flex-wrap: wrap; gap: 0.25rem; }
+
+  /* Buttons: allow wrapping on small screens */
+  #source-heading ~ div { gap: 0.5rem; }
+  .btn { font-size: 0.82rem; padding: 0.5rem 0.85rem; }
+
+  /* Top-5 table: tighter cells */
+  #top5-body td { padding: 0.45rem 0.2rem; font-size: 0.78rem; }
+
+  /* Insight bullets: tighter */
+  #insight-list li { padding: 0.5rem 0.65rem; font-size: 0.8rem; }
 }

@@ -30,12 +30,12 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased">
 
   <!-- ===== HEADER ===== -->
-  <header class="bg-gradient-to-r from-teal-700 to-emerald-600 shadow-lg">
+  <header class="app-header">
     <div class="max-w-7xl mx-auto px-4 py-5 flex items-center gap-3">
-      <span class="text-3xl" role="img" aria-label="chart">📊</span>
-      <div>
-        <h1 class="text-white text-xl font-bold tracking-tight">Smart Expense Analyzer</h1>
-        <p class="text-teal-100 text-xs">Analisis pola pengeluaran Anda secara cerdas</p>
+      <span class="header-icon" role="img" aria-label="chart">📊</span>
+      <div class="min-w-0">
+        <h1 class="text-white text-xl font-bold tracking-tight leading-tight">Smart Expense Analyzer</h1>
+        <p class="text-teal-100 text-xs mt-0.5 leading-snug">Analisis pola pengeluaran Anda secara cerdas</p>
       </div>
     </div>
   </header>
@@ -88,18 +88,22 @@
       <h2 id="kpi-heading" class="sr-only">Ringkasan Pengeluaran</h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <article class="kpi-card" aria-label="Total Pengeluaran">
+          <div class="kpi-icon-wrap kpi-icon-teal" aria-hidden="true">💰</div>
           <p class="kpi-label">Total Pengeluaran</p>
           <p id="kpi-total" class="kpi-value text-teal-700">—</p>
         </article>
         <article class="kpi-card" aria-label="Rata-rata per Hari">
+          <div class="kpi-icon-wrap kpi-icon-emerald" aria-hidden="true">📅</div>
           <p class="kpi-label">Rata-rata / Hari</p>
           <p id="kpi-avg" class="kpi-value text-emerald-600">—</p>
         </article>
         <article class="kpi-card" aria-label="Jumlah Transaksi">
+          <div class="kpi-icon-wrap kpi-icon-amber" aria-hidden="true">🧾</div>
           <p class="kpi-label">Jumlah Transaksi</p>
           <p id="kpi-count" class="kpi-value text-amber-600">—</p>
         </article>
         <article class="kpi-card" aria-label="Kategori Terbesar">
+          <div class="kpi-icon-wrap kpi-icon-indigo" aria-hidden="true">🏆</div>
           <p class="kpi-label">Kategori Terbesar</p>
           <p id="kpi-top-cat" class="kpi-value text-slate-700">—</p>
         </article>
@@ -135,29 +139,29 @@
       <h2 id="charts-heading" class="sr-only">Grafik Pengeluaran</h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Line chart: spending trend -->
-        <div class="card p-5">
-          <h3 class="chart-title">Tren Pengeluaran Harian</h3>
+        <div class="card chart-card p-5">
+          <h3 class="chart-title">📈 Tren Pengeluaran Harian</h3>
           <div class="chart-wrap">
             <canvas id="chart-trend" aria-label="Grafik tren pengeluaran harian"></canvas>
           </div>
         </div>
         <!-- Doughnut chart: category -->
-        <div class="card p-5">
-          <h3 class="chart-title">Pengeluaran per Kategori</h3>
+        <div class="card chart-card p-5">
+          <h3 class="chart-title">🍩 Pengeluaran per Kategori</h3>
           <div class="chart-wrap">
             <canvas id="chart-category" aria-label="Grafik pengeluaran per kategori"></canvas>
           </div>
         </div>
         <!-- Bar chart: payment method -->
-        <div class="card p-5">
-          <h3 class="chart-title">Metode Pembayaran</h3>
+        <div class="card chart-card p-5">
+          <h3 class="chart-title">💳 Metode Pembayaran</h3>
           <div class="chart-wrap">
             <canvas id="chart-payment" aria-label="Grafik penggunaan metode pembayaran"></canvas>
           </div>
         </div>
         <!-- Top 5 table -->
-        <div class="card p-5">
-          <h3 class="chart-title">Top 5 Pengeluaran Terbesar</h3>
+        <div class="card chart-card p-5">
+          <h3 class="chart-title">🔝 Top 5 Pengeluaran Terbesar</h3>
           <div class="overflow-x-auto mt-3">
             <table class="w-full text-sm" aria-label="Tabel 5 pengeluaran terbesar">
               <thead>
