@@ -1,0 +1,107 @@
+date,description,category,amount,payment_method
+2026-08-01,Bayar kos bulanan,Tagihan,1200000,Transfer Bank
+2026-08-03,Sarapan bubur ayam,Makanan,12000,E-Wallet
+2026-08-03,Tiket KRL,Transportasi,10000,E-Wallet
+2026-08-04,Ayam geprek,Makanan,24000,Tunai
+2026-08-04,GoFood pesan makan,Makanan,60000,QRIS
+2026-08-05,Listrik token PLN,Tagihan,165000,E-Wallet
+2026-08-05,Karaoke bersama teman,Hiburan,85000,Kartu Kredit
+2026-08-05,Beli buku,Pendidikan,127000,E-Wallet
+2026-08-06,Tiket KRL,Transportasi,11000,Tunai
+2026-08-06,Bensin motor,Transportasi,45000,Tunai
+2026-08-07,Paket data internet,Tagihan,67000,E-Wallet
+2026-08-07,Makan siang warteg,Makanan,19000,QRIS
+2026-08-07,GoFood pesan makan,Makanan,62000,E-Wallet
+2026-08-07,Top up game,Hiburan,90000,E-Wallet
+2026-08-09,Sarapan bubur ayam,Makanan,14000,E-Wallet
+2026-08-09,Nasi goreng malam,Makanan,23000,E-Wallet
+2026-08-09,GoFood pesan makan,Makanan,38000,E-Wallet
+2026-08-09,Parkir,Transportasi,7000,QRIS
+2026-08-09,Skincare,Belanja,87000,QRIS
+2026-08-10,Internet WiFi,Tagihan,250000,Transfer Bank
+2026-08-10,GoFood pesan makan,Makanan,59000,E-Wallet
+2026-08-11,Makan bersama teman di kafe,Makanan,73000,QRIS
+2026-08-14,GoFood pesan makan,Makanan,37000,QRIS
+2026-08-19,Ayam geprek,Makanan,23000,QRIS
+2026-08-20,Ojek online ke kampus,Transportasi,18000,QRIS
+2026-08-22,Bensin motor,Transportasi,39000,QRIS
+2026-08-22,Beli baju online,Belanja,175000,Kartu Debit
+2026-08-24,Kopi susu kekinian,Makanan,20000,QRIS
+2026-08-24,Langganan streaming,Hiburan,123000,QRIS
+2026-08-25,Beli buku,Pendidikan,66000,Transfer Bank
+2026-08-25,Rawat gigi,Kesehatan,600000,Kartu Debit
+2026-08-26,Makan bersama teman di kafe,Makanan,81000,E-Wallet
+2026-08-27,Beli baju online,Belanja,98000,Kartu Kredit
+2026-08-29,Periksa dokter umum,Kesehatan,205000,Tunai
+2026-08-30,Tiket KRL,Transportasi,13000,QRIS
+2026-09-01,Bayar kos bulanan,Tagihan,1200000,Transfer Bank
+2026-09-01,Peralatan rumah,Belanja,117000,QRIS
+2026-09-01,Beli baju online,Belanja,109000,Kartu Debit
+2026-09-02,Kopi susu kekinian,Makanan,22000,QRIS
+2026-09-03,Langganan streaming,Hiburan,62000,E-Wallet
+2026-09-04,Beli buku,Pendidikan,73000,Kartu Debit
+2026-09-05,Listrik token PLN,Tagihan,170000,E-Wallet
+2026-09-07,Paket data internet,Tagihan,75000,E-Wallet
+2026-09-07,Karaoke bersama teman,Hiburan,67000,QRIS
+2026-09-08,Belanja bulanan minimarket,Belanja,139000,Kartu Debit
+2026-09-08,Periksa dokter umum,Kesehatan,224000,Tunai
+2026-09-09,GoFood pesan makan,Makanan,36000,QRIS
+2026-09-10,Internet WiFi,Tagihan,250000,Transfer Bank
+2026-09-11,GoFood pesan makan,Makanan,67000,QRIS
+2026-09-12,Kopi susu kekinian,Makanan,30000,E-Wallet
+2026-09-12,Kursus online,Pendidikan,210000,E-Wallet
+2026-09-13,Ayam geprek,Makanan,28000,E-Wallet
+2026-09-14,Nasi goreng malam,Makanan,23000,E-Wallet
+2026-09-15,Tiket KRL,Transportasi,12000,Tunai
+2026-09-17,Tiket bioskop,Hiburan,56000,E-Wallet
+2026-09-18,Parkir,Transportasi,4000,Tunai
+2026-09-18,Beli laptop second,Belanja,3500000,Kartu Kredit
+2026-09-21,Makan bersama teman di kafe,Makanan,105000,QRIS
+2026-09-21,Makan bersama teman di kafe,Makanan,127000,E-Wallet
+2026-09-22,Makan bersama teman di kafe,Makanan,115000,QRIS
+2026-09-23,Bensin motor,Transportasi,40000,Tunai
+2026-09-24,Makan siang warteg,Makanan,19000,E-Wallet
+2026-09-24,Ojek online ke kampus,Transportasi,28000,E-Wallet
+2026-09-25,GoFood pesan makan,Makanan,70000,QRIS
+2026-09-25,Grab mobil,Transportasi,43000,E-Wallet
+2026-09-28,Grab mobil,Transportasi,75000,Tunai
+2026-09-29,Sarapan bubur ayam,Makanan,16000,Tunai
+2026-09-30,GoFood pesan makan,Makanan,42000,Tunai
+2026-09-30,Makan siang warteg,Makanan,21000,Tunai
+2026-09-30,Bensin motor,Transportasi,48000,QRIS
+2026-10-01,Bayar kos bulanan,Tagihan,1200000,Transfer Bank
+2026-10-01,Ayam geprek,Makanan,24000,Tunai
+2026-10-02,Tiket KRL,Transportasi,8000,QRIS
+2026-10-03,Bensin motor,Transportasi,49000,E-Wallet
+2026-10-05,Listrik token PLN,Tagihan,211000,E-Wallet
+2026-10-07,Paket data internet,Tagihan,69000,E-Wallet
+2026-10-07,Kopi susu kekinian,Makanan,21000,E-Wallet
+2026-10-07,Kopi susu kekinian,Makanan,23000,E-Wallet
+2026-10-07,Peralatan rumah,Belanja,128000,Kartu Kredit
+2026-10-08,Ayam geprek,Makanan,19000,E-Wallet
+2026-10-09,Beli baju online,Belanja,194000,QRIS
+2026-10-10,Internet WiFi,Tagihan,250000,Transfer Bank
+2026-10-10,Kursus online,Pendidikan,140000,E-Wallet
+2026-10-12,Servis motor dan ganti ban,Transportasi,850000,Tunai
+2026-10-13,Makan siang warteg,Makanan,21000,QRIS
+2026-10-13,Makan bersama teman di kafe,Makanan,68000,E-Wallet
+2026-10-13,Bensin motor,Transportasi,34000,QRIS
+2026-10-14,Kopi susu kekinian,Makanan,21000,Tunai
+2026-10-14,Belanja bulanan minimarket,Belanja,233000,Kartu Kredit
+2026-10-15,Top up game,Hiburan,66000,Kartu Kredit
+2026-10-15,Tiket bioskop,Hiburan,47000,Kartu Kredit
+2026-10-16,Ayam geprek,Makanan,26000,E-Wallet
+2026-10-17,Parkir,Transportasi,7000,E-Wallet
+2026-10-17,Langganan streaming,Hiburan,124000,Kartu Kredit
+2026-10-19,Ojek online ke kampus,Transportasi,30000,E-Wallet
+2026-10-19,Bensin motor,Transportasi,49000,E-Wallet
+2026-10-21,Sarapan bubur ayam,Makanan,17000,QRIS
+2026-10-21,Makan siang warteg,Makanan,24000,QRIS
+2026-10-22,Tiket konser musik,Hiburan,750000,Kartu Kredit
+2026-10-23,Ayam geprek,Makanan,30000,E-Wallet
+2026-10-23,Fotokopi dan print tugas,Pendidikan,18000,Kartu Debit
+2026-10-26,Makan bersama teman di kafe,Makanan,120000,Tunai
+2026-10-28,Makan bersama teman di kafe,Makanan,132000,QRIS
+2026-10-29,Periksa dokter umum,Kesehatan,118000,Kartu Debit
+2026-10-30,Makan siang warteg,Makanan,19000,E-Wallet
+2026-10-31,Ojek online ke kampus,Transportasi,29000,E-Wallet
