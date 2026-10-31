@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Expense Analyzer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- PapaParse CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#0d9488', light: '#ccfbf1', dark: '#0f766e' },
+            accent:  { DEFAULT: '#f59e0b', light: '#fef3c7', dark: '#d97706' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased">
+
+  <!-- ===== HEADER ===== -->
+  <header class="bg-gradient-to-r from-teal-700 to-emerald-600 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex items-center gap-3">
+      <span class="text-3xl" role="img" aria-label="chart">📊</span>
+      <div>
+        <h1 class="text-white text-xl font-bold tracking-tight">Smart Expense Analyzer</h1>
+        <p class="text-teal-100 text-xs">Analisis pola pengeluaran Anda secara cerdas</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+    <!-- ===== DATA SOURCE SECTION ===== -->
+    <section aria-labelledby="source-heading" class="card p-5">
+      <h2 id="source-heading" class="text-base font-semibold text-slate-700 mb-4">Muat Data</h2>
+      <div class="flex flex-wrap gap-3 items-center">
+        <!-- Upload CSV -->
+        <label for="csv-upload" class="btn btn-primary cursor-pointer">
+          <span>📂 Upload CSV</span>
+          <input id="csv-upload" type="file" accept=".csv" class="sr-only" aria-label="Upload file CSV pengeluaran" />
+        </label>
+        <!-- Sample Data -->
+        <button id="btn-sample" class="btn btn-secondary">
+          📋 Gunakan Data Contoh
+        </button>
+        <!-- Reset -->
+        <button id="btn-reset" class="btn btn-ghost hidden">
+          🗑️ Reset Data
+        </button>
+      </div>
+      <!-- Status / Error message -->
+      <div id="msg-area" role="status" aria-live="polite" class="mt-3 hidden"></div>
+    </section>
+
+    <!-- ===== FILTERS SECTION ===== -->
+    <section id="filter-section" aria-labelledby="filter-heading" class="card p-5 hidden">
+      <h2 id="filter-heading" class="text-base font-semibold text-slate-700 mb-4">Filter Data</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label for="filter-month" class="filter-label">Bulan</label>
+          <select id="filter-month" class="filter-select" aria-label="Filter berdasarkan bulan"></select>
+        </div>
+        <div>
+          <label for="filter-category" class="filter-label">Kategori</label>
+          <select id="filter-category" class="filter-select" aria-label="Filter berdasarkan kategori"></select>
+        </div>
+        <div>
+          <label for="filter-payment" class="filter-label">Metode Pembayaran</label>
+          <select id="filter-payment" class="filter-select" aria-label="Filter berdasarkan metode pembayaran"></select>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KPI CARDS ===== -->
+    <section id="kpi-section" aria-labelledby="kpi-heading" class="hidden">
+      <h2 id="kpi-heading" class="sr-only">Ringkasan Pengeluaran</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <article class="kpi-card" aria-label="Total Pengeluaran">
+          <p class="kpi-label">Total Pengeluaran</p>
+          <p id="kpi-total" class="kpi-value text-teal-700">—</p>
+        </article>
+        <article class="kpi-card" aria-label="Rata-rata per Hari">
+          <p class="kpi-label">Rata-rata / Hari</p>
+          <p id="kpi-avg" class="kpi-value text-emerald-600">—</p>
+        </article>
+        <article class="kpi-card" aria-label="Jumlah Transaksi">
+          <p class="kpi-label">Jumlah Transaksi</p>
+          <p id="kpi-count" class="kpi-value text-amber-600">—</p>
+        </article>
+        <article class="kpi-card" aria-label="Kategori Terbesar">
+          <p class="kpi-label">Kategori Terbesar</p>
+          <p id="kpi-top-cat" class="kpi-value text-slate-700">—</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== BUDGET SECTION ===== -->
+    <section id="budget-section" aria-labelledby="budget-heading" class="card p-5 hidden">
+      <h2 id="budget-heading" class="text-base font-semibold text-slate-700 mb-4">💰 Budget Bulanan</h2>
+      <div class="flex flex-wrap gap-3 items-end">
+        <div class="flex-1 min-w-[180px]">
+          <label for="budget-input" class="filter-label">Atur Budget (Rp)</label>
+          <input id="budget-input" type="number" min="0" step="10000" placeholder="Contoh: 3000000"
+                 class="filter-select" aria-label="Input budget bulanan dalam Rupiah" />
+        </div>
+        <button id="btn-set-budget" class="btn btn-primary">Terapkan</button>
+      </div>
+      <!-- Progress bar area -->
+      <div id="budget-result" class="mt-4 hidden">
+        <div class="flex justify-between text-sm mb-1">
+          <span id="budget-spent-label" class="font-medium text-slate-700"></span>
+          <span id="budget-pct-label" class="font-semibold"></span>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+          <div id="budget-bar" class="h-4 rounded-full transition-all duration-500"></div>
+        </div>
+        <p id="budget-warning" class="mt-2 text-sm font-medium"></p>
+      </div>
+    </section>
+
+    <!-- ===== CHARTS GRID ===== -->
+    <section id="charts-section" aria-labelledby="charts-heading" class="hidden">
+      <h2 id="charts-heading" class="sr-only">Grafik Pengeluaran</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Line chart: spending trend -->
+        <div class="card p-5">
+          <h3 class="chart-title">Tren Pengeluaran Harian</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-trend" aria-label="Grafik tren pengeluaran harian"></canvas>
+          </div>
+        </div>
+        <!-- Doughnut chart: category -->
+        <div class="card p-5">
+          <h3 class="chart-title">Pengeluaran per Kategori</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-category" aria-label="Grafik pengeluaran per kategori"></canvas>
+          </div>
+        </div>
+        <!-- Bar chart: payment method -->
+        <div class="card p-5">
+          <h3 class="chart-title">Metode Pembayaran</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-payment" aria-label="Grafik penggunaan metode pembayaran"></canvas>
+          </div>
+        </div>
+        <!-- Top 5 table -->
+        <div class="card p-5">
+          <h3 class="chart-title">Top 5 Pengeluaran Terbesar</h3>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm" aria-label="Tabel 5 pengeluaran terbesar">
+              <thead>
+                <tr class="text-left text-slate-500 border-b border-slate-200">
+                  <th class="pb-2 font-medium">#</th>
+                  <th class="pb-2 font-medium">Deskripsi</th>
+                  <th class="pb-2 font-medium">Kategori</th>
+                  <th class="pb-2 font-medium text-right">Jumlah</th>
+                </tr>
+              </thead>
+              <tbody id="top5-body" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI INSIGHT PANEL ===== -->
+    <section id="insight-section" aria-labelledby="insight-heading" class="card p-5 hidden">
+      <h2 id="insight-heading" class="text-base font-semibold text-slate-700 mb-3 flex items-center gap-2">
+        <span class="text-xl">🤖</span> AI Insight
+      </h2>
+      <ul id="insight-list" class="space-y-2 text-slate-700 text-sm leading-relaxed"></ul>
+    </section>
+
+    <!-- ===== EMPTY STATE ===== -->
+    <section id="empty-state" class="card p-10 text-center" aria-label="Status kosong">
+      <p class="text-5xl mb-4">📁</p>
+      <h2 class="text-lg font-semibold text-slate-700 mb-2">Belum ada data yang dimuat</h2>
+      <p class="text-slate-500 text-sm max-w-sm mx-auto">
+        Upload file CSV pengeluaran Anda atau gunakan tombol <strong>Gunakan Data Contoh</strong> untuk memulai analisis.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="mt-10 py-4 border-t border-slate-200 text-center text-xs text-slate-400">
+    Smart Expense Analyzer &mdash; Analisis pengeluaran pribadi &copy; 2026
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
